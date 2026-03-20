@@ -1,0 +1,66 @@
+[
+  {
+    "id": 1774021169245,
+    "name": "boulbi",
+    "height": 10,
+    "weight": 100,
+    "base_experience": 100,
+    "types": [
+      {
+        "slot": 1,
+        "type": {
+          "name": "fire"
+        }
+      }
+    ],
+    "stats": [
+      {
+        "base_stat": 209,
+        "stat": {
+          "name": "hp"
+        }
+      },
+      {
+        "base_stat": 227,
+        "stat": {
+          "name": "attack"
+        }
+      },
+      {
+        "base_stat": 255,
+        "stat": {
+          "name": "defense"
+        }
+      },
+      {
+        "base_stat": 255,
+        "stat": {
+          "name": "special-attack"
+        }
+      },
+      {
+        "base_stat": 255,
+        "stat": {
+          "name": "special-defense"
+        }
+      },
+      {
+        "base_stat": 255,
+        "stat": {
+          "name": "speed"
+        }
+      }
+    ],
+    "moves": [],
+    "sprites": {
+      "front_default": "https://preview.redd.it/8wtjmmq3yc5d1.png?auto=webp&s=891ba6802c09493df8a5fb3cc19d6668ce4bd709",
+      "other": {
+        "official-artwork": {
+          "front_default": "https://preview.redd.it/8wtjmmq3yc5d1.png?auto=webp&s=891ba6802c09493df8a5fb3cc19d6668ce4bd709"
+        }
+      }
+    },
+    "displayId": "C-001",
+    "isCustom": true
+  }
+]
