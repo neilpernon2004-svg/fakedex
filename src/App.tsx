@@ -21,31 +21,84 @@ export default function App() {
     [customPokemons]
   )
 
-  const filteredPokemons = useMemo(() =>
-    allPokemonsWithCustom.filter((p) => {
-      const matchSearch =
-        p.name.toLowerCase().includes(search.toLowerCase()) ||
-        String(p.id).includes(search)
-      const matchType =
-        selectedType === 'all' || p.types.some((t: any) => t.type.name === selectedType)
-      return matchSearch && matchType
-    }),
+  const getPokemonRefId = (pokemon: any) =>
+    pokemon.displayId || String(pokemon.id).padStart(3, '0')
+
+  const filteredPokemons = useMemo(
+    () =>
+      allPokemonsWithCustom.filter((p) => {
+        const refId = getPokemonRefId(p)
+
+        const matchSearch =
+          p.name.toLowerCase().includes(search.toLowerCase()) ||
+          refId.toLowerCase().includes(search.toLowerCase())
+
+        const matchType =
+          selectedType === 'all' || p.types.some((t: any) => t.type.name === selectedType)
+
+        return matchSearch && matchType
+      }),
     [search, selectedType, allPokemonsWithCustom]
   )
 
+  const visibleSelectedPokemon =
+    selectedPokemon &&
+    filteredPokemons.some((p) => getPokemonRefId(p) === getPokemonRefId(selectedPokemon))
+      ? selectedPokemon
+      : null
+
   const addToTeam = (pokemon: any) => {
     if (team.length >= 6) return
-    if (team.find((p) => p.id === pokemon.id)) return
+    if (team.find((p) => getPokemonRefId(p) === getPokemonRefId(pokemon))) return
     setTeam([...team, pokemon])
   }
 
-  const removeFromTeam = (id: number) => {
-    setTeam(team.filter((p) => p.id !== id))
+  const removeFromTeam = (displayId: string) => {
+    setTeam(team.filter((p) => getPokemonRefId(p) !== displayId))
+  }
+
+  const getNextCustomDisplayId = () => {
+    const customNumbers = customPokemons
+      .map((p) => p.displayId)
+      .filter((id: string | undefined): id is string => !!id && id.startsWith('C-'))
+      .map((id) => parseInt(id.replace('C-', ''), 10))
+      .filter((n) => !Number.isNaN(n))
+
+    const nextNumber = customNumbers.length > 0 ? Math.max(...customNumbers) + 1 : 1
+    return `C-${String(nextNumber).padStart(3, '0')}`
   }
 
   const handleCreate = (pokemon: any) => {
-    setCustomPokemons(prev => [...prev, pokemon])
+    const normalizedName = pokemon.name.trim().toLowerCase()
+
+    const alreadyExistsInBase = (allPokemons as any[]).some(
+      (p) => p.name.trim().toLowerCase() === normalizedName
+    )
+
+    const alreadyExistsInCustom = customPokemons.some(
+      (p) => p.name.trim().toLowerCase() === normalizedName
+    )
+
+    if (alreadyExistsInBase || alreadyExistsInCustom) {
+      return false
+    }
+
+    const customDisplayId = getNextCustomDisplayId()
+
+    const pokemonWithCustomId = {
+      ...pokemon,
+      displayId: customDisplayId,
+      isCustom: true,
+    }
+
+    setCustomPokemons((prev) => [...prev, pokemonWithCustomId])
+    setSelectedPokemon(pokemonWithCustomId)
+    setActiveTab('pokedex')
+
+    return true
   }
+
+  const totalPokemonCount = allPokemonsWithCustom.length
 
   return (
     <div className="app">
@@ -54,8 +107,9 @@ export default function App() {
           <div className="logo-block">
             <span className="logo-ball">◉</span>
             <h1 className="logo-text">POKÉDEX</h1>
-            <span className="logo-sub">GEN I — 151 POKÉMON</span>
+            <span className="logo-sub">{totalPokemonCount} POKÉMON</span>
           </div>
+
           <nav className="tabs">
             <button
               className={`tab-btn ${activeTab === 'pokedex' ? 'active' : ''}`}
@@ -63,6 +117,7 @@ export default function App() {
             >
               <span className="tab-icon">◈</span> POKÉDEX
             </button>
+
             <button
               className={`tab-btn ${activeTab === 'team' ? 'active' : ''}`}
               onClick={() => setActiveTab('team')}
@@ -70,12 +125,15 @@ export default function App() {
               <span className="tab-icon">⬡</span> MON ÉQUIPE
               {team.length > 0 && <span className="team-badge">{team.length}/6</span>}
             </button>
+
             <button
               className={`tab-btn ${activeTab === 'create' ? 'active' : ''}`}
               onClick={() => setActiveTab('create')}
             >
               <span className="tab-icon">✦</span> CRÉER
-              {customPokemons.length > 0 && <span className="team-badge">{customPokemons.length}</span>}
+              {customPokemons.length > 0 && (
+                <span className="team-badge">{customPokemons.length}</span>
+              )}
             </button>
           </nav>
         </div>
@@ -88,20 +146,26 @@ export default function App() {
               <SearchBar value={search} onChange={setSearch} />
               <TypeFilter selected={selectedType} onChange={setSelectedType} />
             </div>
+
             <div className="content-grid">
               <PokemonList
                 pokemons={filteredPokemons}
                 onSelect={setSelectedPokemon}
-                selected={selectedPokemon}
+                selected={visibleSelectedPokemon}
                 onAddToTeam={addToTeam}
                 team={team}
               />
+
               <div className="detail-panel">
-                {selectedPokemon ? (
+                {visibleSelectedPokemon ? (
                   <PokemonDetail
-                    pokemon={selectedPokemon}
+                    pokemon={visibleSelectedPokemon}
                     onAddToTeam={addToTeam}
-                    inTeam={!!team.find((p) => p.id === selectedPokemon.id)}
+                    inTeam={
+                      !!team.find(
+                        (p) => getPokemonRefId(p) === getPokemonRefId(visibleSelectedPokemon)
+                      )
+                    }
                     teamFull={team.length >= 6}
                   />
                 ) : (
@@ -117,12 +181,17 @@ export default function App() {
         )}
 
         {activeTab === 'team' && (
-          <TeamBuilder team={team} onRemove={removeFromTeam} onSelect={setSelectedPokemon} />
+          <TeamBuilder
+            team={team}
+            onRemove={removeFromTeam}
+            onSelect={(pokemon) => {
+              setSelectedPokemon(pokemon)
+              setActiveTab('pokedex')
+            }}
+          />
         )}
 
-        {activeTab === 'create' && (
-          <CreatePokemon onCreate={handleCreate} />
-        )}
+        {activeTab === 'create' && <CreatePokemon onCreate={handleCreate} />}
       </main>
     </div>
   )
