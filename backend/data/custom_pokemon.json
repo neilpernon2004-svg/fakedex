@@ -62,5 +62,133 @@
     },
     "displayId": "C-001",
     "isCustom": true
+  },
+  {
+    "id": 1774194161388,
+    "name": "mouais",
+    "height": 10,
+    "weight": 100,
+    "base_experience": 100,
+    "types": [
+      {
+        "slot": 1,
+        "type": {
+          "name": "water"
+        }
+      }
+    ],
+    "stats": [
+      {
+        "base_stat": 232,
+        "stat": {
+          "name": "hp"
+        }
+      },
+      {
+        "base_stat": 177,
+        "stat": {
+          "name": "attack"
+        }
+      },
+      {
+        "base_stat": 200,
+        "stat": {
+          "name": "defense"
+        }
+      },
+      {
+        "base_stat": 255,
+        "stat": {
+          "name": "special-attack"
+        }
+      },
+      {
+        "base_stat": 216,
+        "stat": {
+          "name": "special-defense"
+        }
+      },
+      {
+        "base_stat": 244,
+        "stat": {
+          "name": "speed"
+        }
+      }
+    ],
+    "moves": [],
+    "sprites": {
+      "front_default": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQf5LufaGcF_Lp6AcFecBrblaV8bHT17AlYoQ&s",
+      "other": {
+        "official-artwork": {
+          "front_default": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQf5LufaGcF_Lp6AcFecBrblaV8bHT17AlYoQ&s"
+        }
+      }
+    },
+    "displayId": "C-002",
+    "isCustom": true
+  },
+  {
+    "id": 1774194331042,
+    "name": "evan",
+    "height": 100,
+    "weight": 100,
+    "base_experience": 100,
+    "types": [
+      {
+        "slot": 1,
+        "type": {
+          "name": "electric"
+        }
+      }
+    ],
+    "stats": [
+      {
+        "base_stat": 206,
+        "stat": {
+          "name": "hp"
+        }
+      },
+      {
+        "base_stat": 255,
+        "stat": {
+          "name": "attack"
+        }
+      },
+      {
+        "base_stat": 153,
+        "stat": {
+          "name": "defense"
+        }
+      },
+      {
+        "base_stat": 255,
+        "stat": {
+          "name": "special-attack"
+        }
+      },
+      {
+        "base_stat": 191,
+        "stat": {
+          "name": "special-defense"
+        }
+      },
+      {
+        "base_stat": 255,
+        "stat": {
+          "name": "speed"
+        }
+      }
+    ],
+    "moves": [],
+    "sprites": {
+      "front_default": "https://static.wikia.nocookie.net/gumball/images/1/1a/Gumball_Saison_3.png/revision/latest/scale-to-width-down/1200?cb=20161122224856&path-prefix=fr",
+      "other": {
+        "official-artwork": {
+          "front_default": "https://static.wikia.nocookie.net/gumball/images/1/1a/Gumball_Saison_3.png/revision/latest/scale-to-width-down/1200?cb=20161122224856&path-prefix=fr"
+        }
+      }
+    },
+    "displayId": "C-003",
+    "isCustom": true
   }
 ]

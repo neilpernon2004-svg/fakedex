@@ -155,5 +155,272 @@
         }
       }
     }
+  },
+  {
+    "id": 8,
+    "name": "wartortle",
+    "height": 13,
+    "weight": 58,
+    "base_experience": 58,
+    "types": [
+      {
+        "slot": 1,
+        "type": {
+          "name": "normal"
+        }
+      },
+      {
+        "slot": 2,
+        "type": {
+          "name": "flying"
+        }
+      }
+    ],
+    "stats": [
+      {
+        "base_stat": 59,
+        "stat": {
+          "name": "hp"
+        }
+      },
+      {
+        "base_stat": 63,
+        "stat": {
+          "name": "attack"
+        }
+      },
+      {
+        "base_stat": 80,
+        "stat": {
+          "name": "defense"
+        }
+      },
+      {
+        "base_stat": 65,
+        "stat": {
+          "name": "special-attack"
+        }
+      },
+      {
+        "base_stat": 80,
+        "stat": {
+          "name": "special-defense"
+        }
+      },
+      {
+        "base_stat": 58,
+        "stat": {
+          "name": "speed"
+        }
+      }
+    ],
+    "moves": [
+      {
+        "move": {
+          "name": "tackle"
+        }
+      },
+      {
+        "move": {
+          "name": "scratch"
+        }
+      },
+      {
+        "move": {
+          "name": "growl"
+        }
+      },
+      {
+        "move": {
+          "name": "tail-whip"
+        }
+      }
+    ],
+    "sprites": {
+      "front_default": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/8.png",
+      "other": {
+        "official-artwork": {
+          "front_default": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/8.png"
+        }
+      }
+    }
+  },
+  {
+    "id": 1774194331042,
+    "name": "evan",
+    "height": 10,
+    "weight": 100,
+    "base_experience": 100,
+    "types": [
+      {
+        "slot": 1,
+        "type": {
+          "name": "electric"
+        }
+      }
+    ],
+    "stats": [
+      {
+        "base_stat": 206,
+        "stat": {
+          "name": "hp"
+        }
+      },
+      {
+        "base_stat": 255,
+        "stat": {
+          "name": "attack"
+        }
+      },
+      {
+        "base_stat": 153,
+        "stat": {
+          "name": "defense"
+        }
+      },
+      {
+        "base_stat": 255,
+        "stat": {
+          "name": "special-attack"
+        }
+      },
+      {
+        "base_stat": 191,
+        "stat": {
+          "name": "special-defense"
+        }
+      },
+      {
+        "base_stat": 255,
+        "stat": {
+          "name": "speed"
+        }
+      }
+    ],
+    "moves": [],
+    "sprites": {
+      "front_default": "https://static.wikia.nocookie.net/gumball/images/1/1a/Gumball_Saison_3.png/revision/latest/scale-to-width-down/1200?cb=20161122224856&path-prefix=fr",
+      "other": {
+        "official-artwork": {
+          "front_default": "https://static.wikia.nocookie.net/gumball/images/1/1a/Gumball_Saison_3.png/revision/latest/scale-to-width-down/1200?cb=20161122224856&path-prefix=fr"
+        }
+      }
+    },
+    "displayId": "C-003",
+    "isCustom": true
+  },
+  {
+    "id": 5,
+    "name": "charmeleon",
+    "height": 10,
+    "weight": 55,
+    "base_experience": 55,
+    "types": [
+      {
+        "slot": 1,
+        "type": {
+          "name": "bug"
+        }
+      },
+      {
+        "slot": 2,
+        "type": {
+          "name": "flying"
+        }
+      }
+    ],
+    "stats": [
+      {
+        "base_stat": 58,
+        "stat": {
+          "name": "hp"
+        }
+      },
+      {
+        "base_stat": 64,
+        "stat": {
+          "name": "attack"
+        }
+      },
+      {
+        "base_stat": 58,
+        "stat": {
+          "name": "defense"
+        }
+      },
+      {
+        "base_stat": 80,
+        "stat": {
+          "name": "special-attack"
+        }
+      },
+      {
+        "base_stat": 65,
+        "stat": {
+          "name": "special-defense"
+        }
+      },
+      {
+        "base_stat": 80,
+        "stat": {
+          "name": "speed"
+        }
+      }
+    ],
+    "moves": [
+      {
+        "move": {
+          "name": "tackle"
+        }
+      },
+      {
+        "move": {
+          "name": "scratch"
+        }
+      },
+      {
+        "move": {
+          "name": "growl"
+        }
+      },
+      {
+        "move": {
+          "name": "tail-whip"
+        }
+      },
+      {
+        "move": {
+          "name": "pound"
+        }
+      },
+      {
+        "move": {
+          "name": "ember"
+        }
+      },
+      {
+        "move": {
+          "name": "water-gun"
+        }
+      },
+      {
+        "move": {
+          "name": "vine-whip"
+        }
+      },
+      {
+        "move": {
+          "name": "thunder-shock"
+        }
+      }
+    ],
+    "sprites": {
+      "front_default": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/5.png",
+      "other": {
+        "official-artwork": {
+          "front_default": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/5.png"
+        }
+      }
+    }
   }
 ]
