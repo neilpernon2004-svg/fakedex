@@ -1,130 +1,116 @@
 [
   {
-    "id": 1774021169245,
-    "name": "boulbi",
+    "id": 5,
+    "name": "charmeleon",
     "height": 10,
-    "weight": 100,
-    "base_experience": 100,
+    "weight": 55,
+    "base_experience": 55,
     "types": [
       {
         "slot": 1,
         "type": {
-          "name": "fire"
+          "name": "bug"
+        }
+      },
+      {
+        "slot": 2,
+        "type": {
+          "name": "flying"
         }
       }
     ],
     "stats": [
       {
-        "base_stat": 209,
+        "base_stat": 58,
         "stat": {
           "name": "hp"
         }
       },
       {
-        "base_stat": 227,
+        "base_stat": 64,
         "stat": {
           "name": "attack"
         }
       },
       {
-        "base_stat": 255,
+        "base_stat": 58,
         "stat": {
           "name": "defense"
         }
       },
       {
-        "base_stat": 255,
+        "base_stat": 80,
         "stat": {
           "name": "special-attack"
         }
       },
       {
-        "base_stat": 255,
+        "base_stat": 65,
         "stat": {
           "name": "special-defense"
         }
       },
       {
-        "base_stat": 255,
+        "base_stat": 80,
         "stat": {
           "name": "speed"
         }
       }
     ],
-    "moves": [],
-    "sprites": {
-      "front_default": "https://preview.redd.it/8wtjmmq3yc5d1.png?auto=webp&s=891ba6802c09493df8a5fb3cc19d6668ce4bd709",
-      "other": {
-        "official-artwork": {
-          "front_default": "https://preview.redd.it/8wtjmmq3yc5d1.png?auto=webp&s=891ba6802c09493df8a5fb3cc19d6668ce4bd709"
-        }
-      }
-    },
-    "displayId": "C-001",
-    "isCustom": true
-  },
-  {
-    "id": 1774194331042,
-    "name": "evan",
-    "height": 10,
-    "weight": 100,
-    "base_experience": 100,
-    "types": [
+    "moves": [
       {
-        "slot": 1,
-        "type": {
-          "name": "electric"
-        }
-      }
-    ],
-    "stats": [
-      {
-        "base_stat": 206,
-        "stat": {
-          "name": "hp"
+        "move": {
+          "name": "tackle"
         }
       },
       {
-        "base_stat": 255,
-        "stat": {
-          "name": "attack"
+        "move": {
+          "name": "scratch"
         }
       },
       {
-        "base_stat": 153,
-        "stat": {
-          "name": "defense"
+        "move": {
+          "name": "growl"
         }
       },
       {
-        "base_stat": 255,
-        "stat": {
-          "name": "special-attack"
+        "move": {
+          "name": "tail-whip"
         }
       },
       {
-        "base_stat": 191,
-        "stat": {
-          "name": "special-defense"
+        "move": {
+          "name": "pound"
         }
       },
       {
-        "base_stat": 255,
-        "stat": {
-          "name": "speed"
+        "move": {
+          "name": "ember"
+        }
+      },
+      {
+        "move": {
+          "name": "water-gun"
+        }
+      },
+      {
+        "move": {
+          "name": "vine-whip"
+        }
+      },
+      {
+        "move": {
+          "name": "thunder-shock"
         }
       }
     ],
-    "moves": [],
     "sprites": {
-      "front_default": "https://static.wikia.nocookie.net/gumball/images/1/1a/Gumball_Saison_3.png/revision/latest/scale-to-width-down/1200?cb=20161122224856&path-prefix=fr",
+      "front_default": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/5.png",
       "other": {
         "official-artwork": {
-          "front_default": "https://static.wikia.nocookie.net/gumball/images/1/1a/Gumball_Saison_3.png/revision/latest/scale-to-width-down/1200?cb=20161122224856&path-prefix=fr"
+          "front_default": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/5.png"
         }
       }
-    },
-    "displayId": "C-003",
-    "isCustom": true
+    }
   }
 ]

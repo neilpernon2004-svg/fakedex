@@ -1,7 +1,6 @@
 [
   {
-    "id": 1774021169245,
-    "name": "boulbi",
+    "name": "neil",
     "height": 10,
     "weight": 100,
     "base_experience": 100,
@@ -9,43 +8,43 @@
       {
         "slot": 1,
         "type": {
-          "name": "fire"
+          "name": "electric"
         }
       }
     ],
     "stats": [
       {
-        "base_stat": 209,
+        "base_stat": 144,
         "stat": {
           "name": "hp"
         }
       },
       {
-        "base_stat": 227,
+        "base_stat": 241,
         "stat": {
           "name": "attack"
         }
       },
       {
-        "base_stat": 255,
+        "base_stat": 9,
         "stat": {
           "name": "defense"
         }
       },
       {
-        "base_stat": 255,
+        "base_stat": 187,
         "stat": {
           "name": "special-attack"
         }
       },
       {
-        "base_stat": 255,
+        "base_stat": 9,
         "stat": {
           "name": "special-defense"
         }
       },
       {
-        "base_stat": 255,
+        "base_stat": 150,
         "stat": {
           "name": "speed"
         }
@@ -53,19 +52,19 @@
     ],
     "moves": [],
     "sprites": {
-      "front_default": "https://preview.redd.it/8wtjmmq3yc5d1.png?auto=webp&s=891ba6802c09493df8a5fb3cc19d6668ce4bd709",
+      "front_default": "https://media.licdn.com/dms/image/v2/D4E03AQH6lW4nRvskYg/profile-displayphoto-shrink_200_200/B4EZcYzcc4HAAk-/0/1748467828930?e=1775692800&v=beta&t=mmk5QzsJbM4BkXU0l4QbtJBoogZAW3urLpmYetf9RMc",
       "other": {
         "official-artwork": {
-          "front_default": "https://preview.redd.it/8wtjmmq3yc5d1.png?auto=webp&s=891ba6802c09493df8a5fb3cc19d6668ce4bd709"
+          "front_default": "https://media.licdn.com/dms/image/v2/D4E03AQH6lW4nRvskYg/profile-displayphoto-shrink_200_200/B4EZcYzcc4HAAk-/0/1748467828930?e=1775692800&v=beta&t=mmk5QzsJbM4BkXU0l4QbtJBoogZAW3urLpmYetf9RMc"
         }
       }
     },
+    "id": 152,
     "displayId": "C-001",
     "isCustom": true
   },
   {
-    "id": 1774194161388,
-    "name": "mouais",
+    "name": "teddy",
     "height": 10,
     "weight": 100,
     "base_experience": 100,
@@ -79,19 +78,19 @@
     ],
     "stats": [
       {
-        "base_stat": 232,
+        "base_stat": 255,
         "stat": {
           "name": "hp"
         }
       },
       {
-        "base_stat": 177,
+        "base_stat": 255,
         "stat": {
           "name": "attack"
         }
       },
       {
-        "base_stat": 200,
+        "base_stat": 255,
         "stat": {
           "name": "defense"
         }
@@ -103,13 +102,13 @@
         }
       },
       {
-        "base_stat": 216,
+        "base_stat": 255,
         "stat": {
           "name": "special-defense"
         }
       },
       {
-        "base_stat": 244,
+        "base_stat": 255,
         "stat": {
           "name": "speed"
         }
@@ -117,212 +116,15 @@
     ],
     "moves": [],
     "sprites": {
-      "front_default": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQf5LufaGcF_Lp6AcFecBrblaV8bHT17AlYoQ&s",
+      "front_default": "https://media.licdn.com/dms/image/v2/D4E03AQHLrAxdN0zNwA/profile-displayphoto-shrink_200_200/B4EZXTSH0JGgAc-/0/1743006499046?e=1775692800&v=beta&t=aOsBe6qqaQkQVOd9gog07N_bkTPGkIuOnmmQUlXA5ho",
       "other": {
         "official-artwork": {
-          "front_default": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQf5LufaGcF_Lp6AcFecBrblaV8bHT17AlYoQ&s"
+          "front_default": "https://media.licdn.com/dms/image/v2/D4E03AQHLrAxdN0zNwA/profile-displayphoto-shrink_200_200/B4EZXTSH0JGgAc-/0/1743006499046?e=1775692800&v=beta&t=aOsBe6qqaQkQVOd9gog07N_bkTPGkIuOnmmQUlXA5ho"
         }
       }
     },
+    "id": 153,
     "displayId": "C-002",
-    "isCustom": true
-  },
-  {
-    "id": 1774194331042,
-    "name": "evan",
-    "height": 100,
-    "weight": 100,
-    "base_experience": 100,
-    "types": [
-      {
-        "slot": 1,
-        "type": {
-          "name": "electric"
-        }
-      }
-    ],
-    "stats": [
-      {
-        "base_stat": 206,
-        "stat": {
-          "name": "hp"
-        }
-      },
-      {
-        "base_stat": 255,
-        "stat": {
-          "name": "attack"
-        }
-      },
-      {
-        "base_stat": 153,
-        "stat": {
-          "name": "defense"
-        }
-      },
-      {
-        "base_stat": 255,
-        "stat": {
-          "name": "special-attack"
-        }
-      },
-      {
-        "base_stat": 191,
-        "stat": {
-          "name": "special-defense"
-        }
-      },
-      {
-        "base_stat": 255,
-        "stat": {
-          "name": "speed"
-        }
-      }
-    ],
-    "moves": [],
-    "sprites": {
-      "front_default": "https://static.wikia.nocookie.net/gumball/images/1/1a/Gumball_Saison_3.png/revision/latest/scale-to-width-down/1200?cb=20161122224856&path-prefix=fr",
-      "other": {
-        "official-artwork": {
-          "front_default": "https://static.wikia.nocookie.net/gumball/images/1/1a/Gumball_Saison_3.png/revision/latest/scale-to-width-down/1200?cb=20161122224856&path-prefix=fr"
-        }
-      }
-    },
-    "displayId": "C-003",
-    "isCustom": true
-  },
-  {
-    "id": 1774278137234,
-    "name": "f.j",
-    "height": 10,
-    "weight": 100,
-    "base_experience": 100,
-    "types": [
-      {
-        "slot": 1,
-        "type": {
-          "name": "fighting"
-        }
-      },
-      {
-        "slot": 2,
-        "type": {
-          "name": "flying"
-        }
-      }
-    ],
-    "stats": [
-      {
-        "base_stat": 170,
-        "stat": {
-          "name": "hp"
-        }
-      },
-      {
-        "base_stat": 202,
-        "stat": {
-          "name": "attack"
-        }
-      },
-      {
-        "base_stat": 179,
-        "stat": {
-          "name": "defense"
-        }
-      },
-      {
-        "base_stat": 209,
-        "stat": {
-          "name": "special-attack"
-        }
-      },
-      {
-        "base_stat": 186,
-        "stat": {
-          "name": "special-defense"
-        }
-      },
-      {
-        "base_stat": 215,
-        "stat": {
-          "name": "speed"
-        }
-      }
-    ],
-    "moves": [],
-    "sprites": {
-      "front_default": "https://substackcdn.com/image/fetch/$s_!9I6A!,f_auto,q_auto:good,fl_progressive:steep/https%3A%2F%2Fsubstack-post-media.s3.amazonaws.com%2Fpublic%2Fimages%2F0b5d13e7-ab52-4f1c-8685-249dd82b1fe0_800x800.jpeg",
-      "other": {
-        "official-artwork": {
-          "front_default": "https://substackcdn.com/image/fetch/$s_!9I6A!,f_auto,q_auto:good,fl_progressive:steep/https%3A%2F%2Fsubstack-post-media.s3.amazonaws.com%2Fpublic%2Fimages%2F0b5d13e7-ab52-4f1c-8685-249dd82b1fe0_800x800.jpeg"
-        }
-      }
-    },
-    "displayId": "C-004",
-    "isCustom": true
-  },
-  {
-    "id": 1774278137235,
-    "name": "gt86",
-    "height": 10,
-    "weight": 100,
-    "base_experience": 100,
-    "types": [
-      {
-        "slot": 1,
-        "type": {
-          "name": "steel"
-        }
-      }
-    ],
-    "stats": [
-      {
-        "base_stat": 50,
-        "stat": {
-          "name": "hp"
-        }
-      },
-      {
-        "base_stat": 50,
-        "stat": {
-          "name": "attack"
-        }
-      },
-      {
-        "base_stat": 50,
-        "stat": {
-          "name": "defense"
-        }
-      },
-      {
-        "base_stat": 50,
-        "stat": {
-          "name": "special-attack"
-        }
-      },
-      {
-        "base_stat": 50,
-        "stat": {
-          "name": "special-defense"
-        }
-      },
-      {
-        "base_stat": 50,
-        "stat": {
-          "name": "speed"
-        }
-      }
-    ],
-    "moves": [],
-    "sprites": {
-      "front_default": "https://listing-images.motoscout24.ch/548/12809548/1213375868.jpg?w=1920&q=90",
-      "other": {
-        "official-artwork": {
-          "front_default": "https://listing-images.motoscout24.ch/548/12809548/1213375868.jpg?w=1920&q=90"
-        }
-      }
-    },
-    "displayId": "C-005",
     "isCustom": true
   }
 ]
