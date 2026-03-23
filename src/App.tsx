@@ -5,7 +5,7 @@ import SearchBar from './components/SearchBar'
 import TeamBuilder from './components/TeamBuilder'
 import TypeFilter from './components/TypeFilter'
 import CreatePokemon from './components/CreatePokemon'
-import { getAllPokemons, createPokemon, getTeam, addToTeam, removeFromTeam } from './services/api'
+import { getAllPokemons, createPokemon, getTeam, addToTeam, removeFromTeam, deletePokemon } from './services/api'
 import './App.css'
 
 export default function App() {
@@ -90,6 +90,15 @@ export default function App() {
       return false
     }
   }
+
+  const handleDelete = async (id: number) => {
+  try {
+    await deletePokemon(id)
+    setAllPokemonsWithCustom(prev => prev.filter(p => p.id !== id))
+  } catch (err: any) {
+    console.error('Erreur suppression :', err.message)
+  }
+}
 
   // Sélectionne un pokémon au hasard dans toute la liste
   const handleRandom = () => {
@@ -203,7 +212,13 @@ export default function App() {
           />
         )}
 
-        {activeTab === 'create' && <CreatePokemon onCreate={handleCreate} />}
+        {activeTab === 'create' && (
+          <CreatePokemon
+            onCreate={handleCreate}
+            customPokemons={allPokemonsWithCustom.filter(p => p.isCustom)}
+            onDelete={handleDelete}
+          />
+        )}
       </main>
     </div>
   )

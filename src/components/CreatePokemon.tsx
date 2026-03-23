@@ -1,8 +1,11 @@
 import { useState } from 'react'
+import React from 'react'
 import { TYPE_COLORS } from './PokemonCard'
 
 interface Props {
-  onCreate: (pokemon: any) => void
+  onCreate: (pokemon: any) => Promise<boolean>
+  customPokemons: any[]
+  onDelete: (id: number) => void
 }
 
 const ALL_TYPES = Object.keys(TYPE_COLORS)
@@ -16,7 +19,9 @@ const STAT_NAMES = [
   { key: 'speed', label: 'Vitesse' },
 ]
 
-export default function CreatePokemon({ onCreate }: Props) {
+const DEFAULT_IMG = 'https://archives.bulbagarden.net/media/upload/7/74/Spr_3e_Question_Mark.png'
+
+export default function CreatePokemon({ onCreate, customPokemons, onDelete }: Props) {
   const [name, setName] = useState('')
   const [selectedTypes, setSelectedTypes] = useState<string[]>([])
   const [imageUrl, setImageUrl] = useState('')
@@ -25,7 +30,7 @@ export default function CreatePokemon({ onCreate }: Props) {
     'special-attack': 50, 'special-defense': 50, speed: 50,
   })
   const [success, setSuccess] = useState(false)
-  const [preview, setPreview] = useState<any>(null)
+  const [error, setError] = useState('')
 
   const toggleType = (type: string) => {
     setSelectedTypes(prev =>
@@ -41,12 +46,12 @@ export default function CreatePokemon({ onCreate }: Props) {
 
   const total = Object.values(stats).reduce((a, b) => a + b, 0)
 
-  const handleSubmit = () => {
+  const handleSubmit = async () => {
+    setError('')
     if (!name.trim() || selectedTypes.length === 0) return
 
-    const id = 900 + Math.floor(Math.random() * 99)
+    // On laisse le backend gérer l'ID — on n'en génère plus ici
     const newPokemon = {
-      id,
       name: name.trim().toLowerCase().replace(/\s+/g, '-'),
       height: 10,
       weight: 100,
@@ -55,19 +60,24 @@ export default function CreatePokemon({ onCreate }: Props) {
       stats: STAT_NAMES.map(s => ({ base_stat: stats[s.key], stat: { name: s.key } })),
       moves: [],
       sprites: {
-        front_default: imageUrl || `https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/${id}.png`,
+        front_default: imageUrl || DEFAULT_IMG,
         other: {
           'official-artwork': {
-            front_default: imageUrl || `https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/${id}.png`,
+            front_default: imageUrl || DEFAULT_IMG,
           },
         },
       },
     }
 
-    setPreview(newPokemon)
-    onCreate(newPokemon)
-    setSuccess(true)
-    setTimeout(() => setSuccess(false), 3000)
+    const created = await onCreate(newPokemon)
+    if (created) {
+      setSuccess(true)
+      setTimeout(() => setSuccess(false), 3000)
+      reset()
+    } else {
+      setError('Un Pokémon avec ce nom existe déjà.')
+      setTimeout(() => setError(''), 4000)
+    }
   }
 
   const reset = () => {
@@ -75,8 +85,6 @@ export default function CreatePokemon({ onCreate }: Props) {
     setSelectedTypes([])
     setImageUrl('')
     setStats({ hp: 50, attack: 50, defense: 50, 'special-attack': 50, 'special-defense': 50, speed: 50 })
-    setPreview(null)
-    setSuccess(false)
   }
 
   const primaryColor = selectedTypes.length > 0 ? TYPE_COLORS[selectedTypes[0]] : 'var(--red)'
@@ -89,9 +97,8 @@ export default function CreatePokemon({ onCreate }: Props) {
       </div>
 
       <div className="create-layout">
-        {/* ── FORM ── */}
+        {/* ── FORMULAIRE ── */}
         <div className="create-form">
-
           <div className="create-section">
             <label className="create-label">◈ NOM DU POKÉMON</label>
             <input
@@ -115,7 +122,10 @@ export default function CreatePokemon({ onCreate }: Props) {
                     key={type}
                     className={`type-pick-btn ${selected ? 'active' : ''} ${disabled ? 'dimmed' : ''}`}
                     onClick={() => toggleType(type)}
-                    style={selected ? { background: color, borderColor: color, color: '#000' } : { borderColor: color + '80', color: color }}
+                    style={selected
+                      ? { background: color, borderColor: color, color: '#000' }
+                      : { borderColor: color + '80', color: color }
+                    }
                   >
                     {type}
                   </button>
@@ -134,17 +144,15 @@ export default function CreatePokemon({ onCreate }: Props) {
             />
             {imageUrl && (
               <div className="url-preview">
-                <img
-                  src={imageUrl}
-                  alt="preview"
-                  onError={e => (e.currentTarget.style.display = 'none')}
-                />
+                <img src={imageUrl} alt="preview" onError={e => (e.currentTarget.style.display = 'none')} />
               </div>
             )}
           </div>
 
           <div className="create-section">
-            <label className="create-label">◈ STATISTIQUES DE BASE — TOTAL: <span style={{ color: primaryColor }}>{total}</span></label>
+            <label className="create-label">
+              ◈ STATISTIQUES — TOTAL: <span style={{ color: primaryColor }}>{total}</span>
+            </label>
             <div className="stats-editor">
               {STAT_NAMES.map(s => (
                 <div key={s.key} className="stat-editor-row">
@@ -176,38 +184,26 @@ export default function CreatePokemon({ onCreate }: Props) {
             >
               ✦ CRÉER LE POKÉMON
             </button>
-            <button className="reset-btn" onClick={reset}>
-              ↺ RESET
-            </button>
+            <button className="reset-btn" onClick={reset}>↺ RESET</button>
           </div>
 
-          {success && (
-            <div className="create-success">
-              ✓ {name || 'Pokémon'} ajouté au Pokédex !
-            </div>
-          )}
+          {success && <div className="create-success">✓ Pokémon ajouté au Pokédex !</div>}
+          {error && <div className="create-error">✕ {error}</div>}
         </div>
 
-        {/* ── PREVIEW CARD ── */}
+        {/* ── APERÇU ── */}
         <div className="create-preview">
           <div className="preview-label">APERÇU</div>
           {name || selectedTypes.length > 0 ? (
-            <div
-              className="preview-card"
-              style={{ '--type-color': primaryColor } as React.CSSProperties}
-            >
+            <div className="preview-card" style={{ '--type-color': primaryColor } as React.CSSProperties}>
               <div className="preview-glow" />
               <div className="preview-img-wrap">
-                {(imageUrl || preview) ? (
-                  <img
-                    src={imageUrl || (preview?.sprites?.other?.['official-artwork']?.front_default)}
-                    alt="preview"
-                    className="preview-img"
-                    onError={e => (e.currentTarget.src = 'https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/0.png')}
-                  />
-                ) : (
-                  <div className="preview-img-placeholder">◉</div>
-                )}
+                <img
+                  src={imageUrl || DEFAULT_IMG}
+                  alt="preview"
+                  className="preview-img"
+                  onError={e => (e.currentTarget.src = DEFAULT_IMG)}
+                />
               </div>
               <div className="preview-name">{name || '???'}</div>
               <div className="preview-types">
@@ -223,10 +219,7 @@ export default function CreatePokemon({ onCreate }: Props) {
                   <div key={s.key} className="preview-stat-row">
                     <span>{s.label}</span>
                     <div className="preview-stat-bar-bg">
-                      <div
-                        className="preview-stat-bar-fill"
-                        style={{ width: `${(stats[s.key] / 255) * 100}%`, background: primaryColor }}
-                      />
+                      <div className="preview-stat-bar-fill" style={{ width: `${(stats[s.key] / 255) * 100}%`, background: primaryColor }} />
                     </div>
                     <span>{stats[s.key]}</span>
                   </div>
@@ -237,11 +230,41 @@ export default function CreatePokemon({ onCreate }: Props) {
           ) : (
             <div className="preview-empty">
               <div className="empty-pokeball">◉</div>
-              <p>Remplis le formulaire<br/>pour voir ton Pokémon</p>
+              <p>Remplis le formulaire<br />pour voir ton Pokémon</p>
             </div>
           )}
         </div>
       </div>
+
+      {/* ── HISTORIQUE ── */}
+      {customPokemons.length > 0 && (
+        <div className="custom-history">
+          <h3 className="history-title">◈ MES POKÉMONS CRÉÉS ({customPokemons.length})</h3>
+          <div className="history-list">
+            {customPokemons.map((p) => {
+              const color = TYPE_COLORS[p.types[0].type.name] || '#ccc'
+              const sprite = p.sprites.other['official-artwork'].front_default || p.sprites.front_default
+              return (
+                <div key={p.id} className="history-card" style={{ '--type-color': color } as React.CSSProperties}>
+                  <img src={sprite} alt={p.name} className="history-sprite" onError={e => (e.currentTarget.src = DEFAULT_IMG)} />
+                  <div className="history-info">
+                    <span className="history-id">#{p.displayId}</span>
+                    <span className="history-name">{p.name}</span>
+                    <div className="history-types">
+                      {p.types.map((t: any) => (
+                        <span key={t.type.name} className="type-tag" style={{ background: TYPE_COLORS[t.type.name] }}>
+                          {t.type.name}
+                        </span>
+                      ))}
+                    </div>
+                  </div>
+                  <button className="history-delete" onClick={() => onDelete(p.id)}>🗑️</button>
+                </div>
+              )
+            })}
+          </div>
+        </div>
+      )}
     </div>
   )
 }

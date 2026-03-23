@@ -1253,4 +1253,57 @@ body::before {
   color: #000;
 }
 
+.custom-history { margin-top: 2rem; }
+
+.history-title {
+  font-size: 0.8rem;
+  letter-spacing: 0.1em;
+  color: var(--red);
+  margin-bottom: 1rem;
+}
+
+.history-list { display: flex; flex-direction: column; gap: 0.5rem; }
+
+.history-card {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  padding: 0.75rem 1rem;
+  background: rgba(255,255,255,0.03);
+  border: 1px solid var(--type-color, #333);
+  border-radius: 8px;
+}
+
+.history-sprite { width: 48px; height: 48px; object-fit: contain; }
+
+.history-info {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  flex: 1;
+}
+
+.history-id { font-size: 0.7rem; color: #666; }
+
+.history-name {
+  font-size: 0.9rem;
+  font-weight: bold;
+  text-transform: capitalize;
+}
+
+.history-types { display: flex; gap: 4px; }
+
+.history-delete {
+  background: transparent;
+  border: 1px solid #ff4444;
+  color: #ff4444;
+  border-radius: 6px;
+  padding: 4px 8px;
+  cursor: pointer;
+  font-size: 0.85rem;
+  transition: background 0.2s;
+}
+
+.history-delete:hover { background: #ff4444; color: #000; }
+
 

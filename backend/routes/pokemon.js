@@ -80,7 +80,8 @@ router.post('/', async (req, res) => {
   const nextNum = nums.length > 0 ? Math.max(...nums) + 1 : 1
   const displayId = `C-${String(nextNum).padStart(3, '0')}`
 
-  const newPokemon = { ...pokemon, id: Date.now(), displayId, isCustom: true }
+  const lastId = all.reduce((max, p) => Math.max(max, p.id), 0)
+  const newPokemon = { ...pokemon, id: lastId + 1, displayId, isCustom: true }
   custom.push(newPokemon)
   saveCustomPokemons(custom)
   res.status(201).json(newPokemon)

@@ -260,5 +260,69 @@
     },
     "displayId": "C-004",
     "isCustom": true
+  },
+  {
+    "id": 1774278137235,
+    "name": "gt86",
+    "height": 10,
+    "weight": 100,
+    "base_experience": 100,
+    "types": [
+      {
+        "slot": 1,
+        "type": {
+          "name": "steel"
+        }
+      }
+    ],
+    "stats": [
+      {
+        "base_stat": 50,
+        "stat": {
+          "name": "hp"
+        }
+      },
+      {
+        "base_stat": 50,
+        "stat": {
+          "name": "attack"
+        }
+      },
+      {
+        "base_stat": 50,
+        "stat": {
+          "name": "defense"
+        }
+      },
+      {
+        "base_stat": 50,
+        "stat": {
+          "name": "special-attack"
+        }
+      },
+      {
+        "base_stat": 50,
+        "stat": {
+          "name": "special-defense"
+        }
+      },
+      {
+        "base_stat": 50,
+        "stat": {
+          "name": "speed"
+        }
+      }
+    ],
+    "moves": [],
+    "sprites": {
+      "front_default": "https://listing-images.motoscout24.ch/548/12809548/1213375868.jpg?w=1920&q=90",
+      "other": {
+        "official-artwork": {
+          "front_default": "https://listing-images.motoscout24.ch/548/12809548/1213375868.jpg?w=1920&q=90"
+        }
+      }
+    },
+    "displayId": "C-005",
+    "isCustom": true
   }
 ]
