@@ -1,12 +1,3 @@
-// ============================================
-// App.tsx — Composant principal
-// ============================================
-// Changements vs version originale :
-// - Plus d'import du pokemon.json local
-// - Les données viennent du backend via api.ts
-// - L'équipe est sauvegardée côté backend
-// - useEffect pour charger les données au démarrage
-
 import { useState, useMemo, useEffect } from 'react'
 import PokemonList from './components/PokemonList'
 import PokemonDetail from './components/PokemonDetail'
@@ -23,24 +14,12 @@ export default function App() {
   const [team, setTeam] = useState<any[]>([])
   const [activeTab, setActiveTab] = useState<'pokedex' | 'team' | 'create'>('pokedex')
   const [selectedType, setSelectedType] = useState('all')
-
-  // Avant : deux states séparés (allPokemons + customPokemons)
-  // Maintenant : un seul state qui contient tout (base + custom)
-  // car le backend nous renvoie déjà les deux mélangés
   const [allPokemonsWithCustom, setAllPokemonsWithCustom] = useState<any[]>([])
-
-  // Pour afficher un écran de chargement pendant que le backend répond
   const [loading, setLoading] = useState(true)
 
-  // ── Chargement initial ──────────────────────────────
-  // useEffect avec [] = s'exécute UNE SEULE FOIS au démarrage
-  // C'est ici qu'on appelle le backend pour récupérer les données
   useEffect(() => {
     async function loadData() {
       try {
-        // Promise.all = lance les deux appels EN MÊME TEMPS (plus rapide)
-        // getAllPokemons() → GET /api/pokemons
-        // getTeam()        → GET /api/team
         const [pokemons, savedTeam] = await Promise.all([
           getAllPokemons(),
           getTeam(),
@@ -50,20 +29,15 @@ export default function App() {
       } catch (err) {
         console.error('Erreur chargement :', err)
       } finally {
-        // finally = s'exécute toujours, même si erreur
         setLoading(false)
       }
     }
     loadData()
   }, [])
 
-  // ── Helpers ─────────────────────────────────────────
-  // Retourne l'ID à afficher : displayId pour les custom, id padded pour les autres
   const getPokemonRefId = (pokemon: any) =>
     pokemon.displayId || String(pokemon.id).padStart(3, '0')
 
-  // ── Filtrage ─────────────────────────────────────────
-  // useMemo = recalcule seulement quand search, selectedType ou la liste change
   const filteredPokemons = useMemo(
     () =>
       allPokemonsWithCustom.filter((p) => {
@@ -84,54 +58,48 @@ export default function App() {
       ? selectedPokemon
       : null
 
-  // ── Gestion de l'équipe ──────────────────────────────
+  const customPokemons = allPokemonsWithCustom.filter((p) => p.isCustom)
 
-  // Ajoute un pokémon à l'équipe via le backend (POST /api/team)
-  // Le backend vérifie les règles : max 6, pas de doublon
   const handleAddToTeam = async (pokemon: any) => {
     try {
       const result = await addToTeam(pokemon)
-      setTeam(result.team) // on met à jour le state avec la réponse du backend
+      setTeam(result.team)
     } catch (err: any) {
       console.error('Erreur ajout équipe :', err.message)
     }
   }
 
-  // Retire un pokémon de l'équipe via le backend (DELETE /api/team/:id)
-  const handleRemoveFromTeam = async (displayId: string) => {
-    const pokemon = team.find((p) => getPokemonRefId(p) === displayId)
-    if (!pokemon) return
+  const handleRemoveFromTeam = async (id: number) => {
     try {
-      const result = await removeFromTeam(pokemon.id)
+      const result = await removeFromTeam(id)
       setTeam(result.team)
     } catch (err: any) {
       console.error('Erreur retrait équipe :', err.message)
     }
   }
 
-  // ── Création d'un pokémon custom ─────────────────────
-  // Envoie le nouveau pokémon au backend (POST /api/pokemons)
-  // Le backend gère l'ID, le displayId (C-001, C-002...) et la sauvegarde
   const handleCreate = async (pokemon: any) => {
     try {
       const newPokemon = await createPokemon(pokemon)
-      // On ajoute le nouveau pokémon à la liste locale
       setAllPokemonsWithCustom((prev) => [...prev, newPokemon])
       setSelectedPokemon(newPokemon)
       setActiveTab('pokedex')
       return true
     } catch (err: any) {
-      // Le backend renvoie une erreur si le nom existe déjà (409)
       console.error('Erreur création :', err.message)
       return false
     }
   }
 
-  const totalPokemonCount = allPokemonsWithCustom.length
+  // Sélectionne un pokémon au hasard dans toute la liste
+  const handleRandom = () => {
+    const random = allPokemonsWithCustom[Math.floor(Math.random() * allPokemonsWithCustom.length)]
+    setSelectedPokemon(random)
+    setActiveTab('pokedex')
+    setSearch('')
+    setSelectedType('all')
+  }
 
-  // ── Écran de chargement ──────────────────────────────
-  // Affiché pendant que le backend récupère les données depuis pokeapi.co
-  // La 1ère fois ~10 sec (appel API), ensuite instantané (cache)
   if (loading) return (
     <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'center', height: '100vh', color: 'var(--red)' }}>
       <div style={{ textAlign: 'center' }}>
@@ -141,7 +109,6 @@ export default function App() {
     </div>
   )
 
-  // ── Rendu principal ──────────────────────────────────
   return (
     <div className="app">
       <header className="header">
@@ -149,7 +116,7 @@ export default function App() {
           <div className="logo-block">
             <span className="logo-ball">◉</span>
             <h1 className="logo-text">POKÉDEX</h1>
-            <span className="logo-sub">{totalPokemonCount} POKÉMON</span>
+            <span className="logo-sub">{allPokemonsWithCustom.length} POKÉMON</span>
           </div>
 
           <nav className="tabs">
@@ -173,11 +140,8 @@ export default function App() {
               onClick={() => setActiveTab('create')}
             >
               <span className="tab-icon">✦</span> CRÉER
-              {/* Compte uniquement les pokémons custom (isCustom: true) */}
-              {allPokemonsWithCustom.filter((p: any) => p.isCustom).length > 0 && (
-                <span className="team-badge">
-                  {allPokemonsWithCustom.filter((p: any) => p.isCustom).length}
-                </span>
+              {customPokemons.length > 0 && (
+                <span className="team-badge">{customPokemons.length}</span>
               )}
             </button>
           </nav>
@@ -190,6 +154,9 @@ export default function App() {
             <div className="controls">
               <SearchBar value={search} onChange={setSearch} />
               <TypeFilter selected={selectedType} onChange={setSelectedType} />
+              <button className="random-btn" onClick={handleRandom}>
+                🔀 Aléatoire
+              </button>
             </div>
 
             <div className="content-grid">
@@ -197,7 +164,7 @@ export default function App() {
                 pokemons={filteredPokemons}
                 onSelect={setSelectedPokemon}
                 selected={visibleSelectedPokemon}
-                onAddToTeam={handleAddToTeam}  
+                onAddToTeam={handleAddToTeam}
                 team={team}
               />
 
@@ -205,7 +172,7 @@ export default function App() {
                 {visibleSelectedPokemon ? (
                   <PokemonDetail
                     pokemon={visibleSelectedPokemon}
-                    onAddToTeam={handleAddToTeam}  
+                    onAddToTeam={handleAddToTeam}
                     inTeam={
                       !!team.find(
                         (p) => getPokemonRefId(p) === getPokemonRefId(visibleSelectedPokemon)
@@ -228,7 +195,7 @@ export default function App() {
         {activeTab === 'team' && (
           <TeamBuilder
             team={team}
-            onRemove={handleRemoveFromTeam}  
+            onRemove={handleRemoveFromTeam}
             onSelect={(pokemon) => {
               setSelectedPokemon(pokemon)
               setActiveTab('pokedex')

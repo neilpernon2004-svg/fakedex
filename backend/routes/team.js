@@ -26,7 +26,8 @@ router.post('/', (req, res) => {
 })
 
 router.delete('/:id', (req, res) => {
-  const newTeam = getTeam().filter(p => p.id !== parseInt(req.params.id))
+  const id = Number(req.params.id)  // Number() gère les grands timestamps
+  const newTeam = getTeam().filter(p => p.id !== id)
   saveTeam(newTeam)
   res.json({ team: newTeam })
 })

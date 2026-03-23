@@ -190,5 +190,75 @@
     },
     "displayId": "C-003",
     "isCustom": true
+  },
+  {
+    "id": 1774278137234,
+    "name": "f.j",
+    "height": 10,
+    "weight": 100,
+    "base_experience": 100,
+    "types": [
+      {
+        "slot": 1,
+        "type": {
+          "name": "fighting"
+        }
+      },
+      {
+        "slot": 2,
+        "type": {
+          "name": "flying"
+        }
+      }
+    ],
+    "stats": [
+      {
+        "base_stat": 170,
+        "stat": {
+          "name": "hp"
+        }
+      },
+      {
+        "base_stat": 202,
+        "stat": {
+          "name": "attack"
+        }
+      },
+      {
+        "base_stat": 179,
+        "stat": {
+          "name": "defense"
+        }
+      },
+      {
+        "base_stat": 209,
+        "stat": {
+          "name": "special-attack"
+        }
+      },
+      {
+        "base_stat": 186,
+        "stat": {
+          "name": "special-defense"
+        }
+      },
+      {
+        "base_stat": 215,
+        "stat": {
+          "name": "speed"
+        }
+      }
+    ],
+    "moves": [],
+    "sprites": {
+      "front_default": "https://substackcdn.com/image/fetch/$s_!9I6A!,f_auto,q_auto:good,fl_progressive:steep/https%3A%2F%2Fsubstack-post-media.s3.amazonaws.com%2Fpublic%2Fimages%2F0b5d13e7-ab52-4f1c-8685-249dd82b1fe0_800x800.jpeg",
+      "other": {
+        "official-artwork": {
+          "front_default": "https://substackcdn.com/image/fetch/$s_!9I6A!,f_auto,q_auto:good,fl_progressive:steep/https%3A%2F%2Fsubstack-post-media.s3.amazonaws.com%2Fpublic%2Fimages%2F0b5d13e7-ab52-4f1c-8685-249dd82b1fe0_800x800.jpeg"
+        }
+      }
+    },
+    "displayId": "C-004",
+    "isCustom": true
   }
 ]
