@@ -1,6 +1,6 @@
 # 🎮 Fakedex — Pokédex Interactif
 
-> Application web fullstack permettant de consulter les 151 pokémons de la génération 1, de construire une équipe, et de créer ses propres pokémons custom.
+> Application web fullstack permettant de consulter les 151 pokémons de la génération 1, de construire une équipe, et de créer ses propres pokémons customs.
 
 ---
 
@@ -51,7 +51,7 @@ fakedex/
         ├── PokemonDetail.tsx       ← Fiche détaillée (stats, moves, évolutions)
         ├── SearchBar.tsx           ← Barre de recherche par nom/numéro
         ├── TypeFilter.tsx          ← Filtre par type de pokémon
-        ├── TeamBuilder.tsx         ← Gestion de l'équipe de 6
+        ├── TeamBuilder.tsx         ← Gestion de l'equipe de 6
         └── CreatePokemon.tsx       ← Formulaire de création + historique
 ```
 
@@ -60,7 +60,7 @@ fakedex/
 ## 🚀 Lancer le projet
 
 ### Prérequis
-- **Node.js** v18 ou plus (vérifier avec `node --version`)
+- **Node.js** v18 
 - **npm** installé
 
 ### Étape 1 — Lancer le backend
@@ -73,7 +73,9 @@ npm run dev
 
 ✅ Le serveur démarre sur **http://localhost:3001**
 
-> ⚠️ La première fois, le backend va chercher les 151 pokémons sur pokeapi.co (~10 secondes). Ensuite, les données sont mises en cache et le chargement est instantané.
+> ⚠️ La première fois, le backend va chercher les 151 pokémons sur pokeapi.co. Ensuite, les données sont mises en cache et le chargement est instantané.
+
+PS: c'ets normal si les 1er pokemons n'ont pas de sens, genre bulbisare avec un type flying. Petit problème qui vient directement de l'API.
 
 ### Étape 2 — Lancer le frontend (dans un nouveau terminal)
 
@@ -129,14 +131,13 @@ npm run dev
 - ❌ **Retirer un pokémon** de l'équipe
 
 ### Création
-- ✦ **Créer un pokémon custom** — nom, type(s), image, statistiques
+- ✦ **Créer un pokémon custom** — nom, type, image, stats
 - 🗂️ **Historique** des pokémons créés
 - 🗑️ **Supprimer** un pokémon custom
-- 💾 **Persistance** — les pokémons custom sont sauvegardés côté backend
+- 💾 **Persistance** — les pokémons custom sont sauvegardés coté backend
 
 ---
 
-## 🏗️ Architecture technique
 
 ### Fonctionnement du cache
 
@@ -145,7 +146,7 @@ npm run dev
 React → backend → pokeapi.co → 151 pokémons → cache.json → réponse
 
 Visites suivantes :
-React → backend → cache.json → réponse (instantané)
+React → backend → cache.json → réponse 
 ```
 
 ### Flux de données
