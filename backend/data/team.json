@@ -112,5 +112,69 @@
         }
       }
     }
+  },
+  {
+    "name": "teddy",
+    "height": 10,
+    "weight": 100,
+    "base_experience": 100,
+    "types": [
+      {
+        "slot": 1,
+        "type": {
+          "name": "water"
+        }
+      }
+    ],
+    "stats": [
+      {
+        "base_stat": 255,
+        "stat": {
+          "name": "hp"
+        }
+      },
+      {
+        "base_stat": 255,
+        "stat": {
+          "name": "attack"
+        }
+      },
+      {
+        "base_stat": 255,
+        "stat": {
+          "name": "defense"
+        }
+      },
+      {
+        "base_stat": 255,
+        "stat": {
+          "name": "special-attack"
+        }
+      },
+      {
+        "base_stat": 255,
+        "stat": {
+          "name": "special-defense"
+        }
+      },
+      {
+        "base_stat": 255,
+        "stat": {
+          "name": "speed"
+        }
+      }
+    ],
+    "moves": [],
+    "sprites": {
+      "front_default": "https://media.licdn.com/dms/image/v2/D4E03AQHLrAxdN0zNwA/profile-displayphoto-shrink_200_200/B4EZXTSH0JGgAc-/0/1743006499046?e=1775692800&v=beta&t=aOsBe6qqaQkQVOd9gog07N_bkTPGkIuOnmmQUlXA5ho",
+      "other": {
+        "official-artwork": {
+          "front_default": "https://media.licdn.com/dms/image/v2/D4E03AQHLrAxdN0zNwA/profile-displayphoto-shrink_200_200/B4EZXTSH0JGgAc-/0/1743006499046?e=1775692800&v=beta&t=aOsBe6qqaQkQVOd9gog07N_bkTPGkIuOnmmQUlXA5ho"
+        }
+      }
+    },
+    "id": 153,
+    "displayId": "C-002",
+    "isCustom": true
   }
 ]
